@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/childrenFirst
+    username: postgres
+    password: nejra
+  jpa:
+    hibernate:
+      ddl-auto: update
+    openInView: false
+    show_sql: true
+    generate-ddl: true
+  data:
+    jpa:
+      repositories.enabled: true
+
+service:
+  ui:
+    url: ${FRONTEND_API_URL:http://localhost:4200}
