@@ -15,7 +15,6 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    @CrossOrigin
     @PostMapping
     public Card createCard(@RequestBody Card card) {
         return cardService.create(card);

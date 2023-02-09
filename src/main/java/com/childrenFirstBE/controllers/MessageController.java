@@ -15,7 +15,7 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @CrossOrigin
+
     @PostMapping
     public Message createMessage(@RequestBody Message message) {
         return messageService.create(message);

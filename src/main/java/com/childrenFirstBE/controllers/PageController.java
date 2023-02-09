@@ -14,7 +14,7 @@ public class PageController {
     public PageController(PageService pageService) {
         this.pageService = pageService;
     }
-    
+
     @PostMapping
     public Page createPage(@RequestBody Page page) {
         return pageService.create(page);
