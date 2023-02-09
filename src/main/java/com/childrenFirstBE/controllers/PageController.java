@@ -14,8 +14,7 @@ public class PageController {
     public PageController(PageService pageService) {
         this.pageService = pageService;
     }
-
-    @CrossOrigin
+    
     @PostMapping
     public Page createPage(@RequestBody Page page) {
         return pageService.create(page);
