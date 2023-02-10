@@ -1,25 +1,26 @@
 package com.childrenFirstBE.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebMvc
-public class CorsConfiguration implements WebMvcConfigurer {
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
+public class CorsConfiguration {
 
-        registry.addMapping("/api/**")
-                .allowedOrigins("https://childrenfirst.netlify.app")
-                .allowedMethods("PUT", "DELETE", "GET", "POST")
-                .allowedHeaders("header1", "header2", "header3")
-                .exposedHeaders("header1", "header2")
-                .allowCredentials(true).maxAge(3600);
+    @Value("${service.ui.url}")
+    private String[] allowedOrigins;
 
-        // Add more mappings...
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedMethods("*")
+                        .allowedOrigins(allowedOrigins);
+            }
+        };
     }
-
 }
